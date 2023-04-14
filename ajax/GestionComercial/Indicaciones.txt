@@ -1,0 +1,3 @@
+Levantar el sistema de manera local.
+Crear base de datos con el mismo e importar.
+Utilizar XAMPP V3.2.2
