@@ -92,7 +92,7 @@ if(strlen(session_id()) < 1)
 
           <div class="navbar-custom-menu" style="margin-top: 12px;">
                     <!-- <div class="form-group col-lg-7 col-md-7 col-sm-7 col-xs-12"> -->
-            <a data-toggle="modal" href="#myModal">
+            <a data-toggle="modal" href="#myModalMedicamentosVencer">
               <button id="btnAgregarArt" type="button" class="btn btn-danger">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
                   <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
