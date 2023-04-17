@@ -3,13 +3,13 @@
 define("DB_HOST","solucionesintegralesjb.com");
 
 //Nombre de la base de datos
-define("DB_NAME","solucion_Demo-botica");
+define("DB_NAME","soluciones_botica");
 
 //Usuario de la base de datos
-define("DB_USERNAME","solucion_demo");
+define("DB_USERNAME","soluciones_botica");
 
 //Contrase単a del usuario de la base de datos
-define("DB_PASSWORD","dem0b0tIc@sIjB2o2o");
+define("DB_PASSWORD","S3ñ0rD31AS0L3Dad");
 
 //Definimos la codificacion de caracteres
 define("DB_ENCODE","utf8");

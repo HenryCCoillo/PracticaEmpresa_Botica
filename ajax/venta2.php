@@ -10,7 +10,6 @@ $idventa=isset($_POST["idventa"])? limpiarCadena($_POST["idventa"]):"";
 $idcliente=isset($_POST["idcliente"])? limpiarCadena($_POST["idcliente"]):"";
 $idusuario=$_SESSION["idusuario"];
 $codigotipo_comprobante=isset($_POST["codigotipo_comprobante"])? limpiarCadena($_POST["codigotipo_comprobante"]):"";
-$codigotipo_pago=isset($_POST["codigotipo_pago"])? limpiarCadena($_POST["codigotipo_pago"]):"";
 // $serie=isset($_POST["serie"])? limpiarCadena($_POST["serie"]):"";
 // $correlativo=isset($_POST["correlativo"])? limpiarCadena($_POST["correlativo"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
@@ -36,7 +35,7 @@ switch ($_GET["op"]){
 			list($num,$cen)=explode('.',$total_importe);
 			$leyenda = $letras.'Y '.$cen.'/100 SOLES';
 
-			$rspta=$venta->insertar($idcliente,$idusuario,$codigotipo_comprobante,$codigotipo_pago,$fecha_hora,$impuesto,$total_venta_gravado,$total_venta_inafectas,$total_venta_exonerado,$total_venta_gratuitas,$isc,$total_descuentos,$total_igv,$total_importe,$leyenda,$moneda,$_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_venta"],$_POST["descuento"],$_POST["serieArticulo"],$_POST["incentivo"],$_POST["incentivo_total"]);
+			$rspta=$venta->insertar($idcliente,$idusuario,$codigotipo_comprobante,$fecha_hora,$impuesto,$total_venta_gravado,$total_venta_inafectas,$total_venta_exonerado,$total_venta_gratuitas,$isc,$total_descuentos,$total_igv,$total_importe,$leyenda,$moneda,$_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_venta"],$_POST["descuento"],$_POST["serieArticulo"],$_POST["incentivo"],$_POST["incentivo_total"]);
 			echo $rspta ? "Venta registrada" : "No se pudieron registrar todos los datos de la venta";
 		}
 		else {
@@ -222,14 +221,8 @@ switch ($_GET["op"]){
 		while ($reg = $rspta->fetch_object()) {
 			echo '<option value='.$reg->codigotipo_comprobante.'>'.$reg->descripcion_tipo_comprobante.'</option>';
 		}
-		break;	
-	case 'selectTipoPago':
-			$rspta = $venta->selectTipoPago();// -- 
-			//echo '<option value="all">Todos</option>';
-			while ($reg = $rspta->fetch_object()) {
-				echo '<option value='.$reg->codigotipo_pago.'>'.$reg->descripcion_tipo_pago.'</option>';
-			}
-			break;
+		break;
+
 	case 'selectMoneda':
 			$rspta = $venta->selectMoneda();
 			while ($reg=$rspta->fetch_object()) {

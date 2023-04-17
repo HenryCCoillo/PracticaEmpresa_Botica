@@ -328,7 +328,7 @@ function imprimirb()
 function listarControlados(){
 	$.post("../ajax/articulo.php?op=listarControlados", function(r){
 		$("#tipo_venta_articulo").html(r);
-		//$('#idcategoria').selectpicker('refresh');
+		// $('#idcategoria').selectpicker('refresh');
 		console.log(r)
 
 });

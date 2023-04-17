@@ -3,7 +3,7 @@
 define("DB_HOST","localhost");
 
 //Nombre de la base de datos
-define("DB_NAME","practica_botica");
+define("DB_NAME","soluciones_botica");
 
 //Usuario de la base de datos
 define("DB_USERNAME","root");

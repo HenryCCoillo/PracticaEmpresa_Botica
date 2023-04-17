@@ -25,10 +25,12 @@ if($_SESSION['almacen']==1)
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border ">
-                          <h1 class="box-title ">Relacion de Medicamentos &nbsp; <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> &nbsp; Agregar</button>
-                          <a target="_blank" href="../reportes/rptarticulos.php"> <button class="btn btn-info">Reporte</button> </a><a href="precio-articulos.php" class="btn btn-default">Precio de Medicamentos</a>
+                          <h1 class="box-title ">Relacion de Medicamentos </h1>
+                          <button class="btn btn-success btn-art" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> &nbsp; Agregar</button>
+                          <button class="btn btn-success btn-art"><i class="fa fa-file-pdf-o"></i> &nbsp;<a target="_blank" href="../reportes/rptarticulos.php" class="btn-info">Reporte</button></a>
+                          <button class="btn btn-success btn-art"><i class="fa fa-usd"></i> &nbsp;<a href="precio-articulos.php" class="btn-info">Precios</a></button>
                          
-                          </h1>
+                          
                         <div class="box-tools pull-right">
                         </div>
                     </div>

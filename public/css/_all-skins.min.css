@@ -1,10 +1,13 @@
+/* Fondo de header */
 .skin-blue .main-header .navbar {
     background-image: url("../images/loguito.png");
 }
 
+/* Color Para letra de Usuario */
 .skin-blue .main-header .navbar .nav>li>a {
     color: #fff;
-    font-weight: 600;
+   
+    border-radius: 10px;
 }
 
 .skin-blue .main-header .navbar .nav>li>a:hover,
@@ -14,10 +17,8 @@
 .skin-blue .main-header .navbar .nav .open>a:hover,
 .skin-blue .main-header .navbar .nav .open>a:focus,
 .skin-blue .main-header .navbar .nav>.active>a {
-    background: rgba(0, 0, 0, 0.1);
+    background: #00bfee00;
     color: #f6f6f6;
-    align-items: center;
-    padding: 12px 0
 }
 
 .skin-blue .main-header .navbar .sidebar-toggle {
@@ -34,7 +35,7 @@
 }
 
 .skin-blue .main-header .navbar .sidebar-toggle:hover {
-    background-color: #367fa900;
+    background-color: #9d0b4d00;
 }
 
 @media (max-width:767px) {
@@ -52,13 +53,13 @@
 }
 
 .skin-blue .main-header .logo {
-    background-color: #00bcd4;
+    background-color: #19376D;/* Parte detrÃ¡s de el logo SISFARMA*/
     color: #fff;
-    border-bottom: 0 solid #00bcd4;
+    border-bottom: 0 solid #19376D;
 }
 
 .skin-blue .main-header .logo:hover {
-    background-color: #00bcd4;
+    background-color: #19376D;
 }
 
 .skin-blue .main-header li.user-header {
@@ -66,7 +67,7 @@
 }
 
 .skin-blue .content-header {
-    background: transparent
+    background: transparent/*Fondo de menu en transparencia*/
 }
 
 .skin-blue .wrapper,
@@ -85,7 +86,7 @@
 
 .skin-blue .sidebar-menu>li.header {
     color: #4b646f;
-    background: #00bcd4;
+    background: #19376D;
     background: transparent;
 }
 
@@ -96,10 +97,10 @@
 .skin-blue .sidebar-menu>li:hover>a,
 .skin-blue .sidebar-menu>li.active>a {
     color: #fff;
-    background: #46cfc3;
+    background: #19376D;
     border-left-color: #ffffff;
     font-weight: 700;
-    border-radius: 0 10px 10px 0;
+   
 }
 
 .skin-blue .sidebar-menu>li>.treeview-menu {
@@ -2163,4 +2164,76 @@
     .skin-purple-light.sidebar-mini.sidebar-collapse .sidebar-menu>li>.treeview-menu {
         border-left: 1px solid #d2d6de
     }
+}
+
+.button {
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.2);
+    text-shadow: 0 1px 0 hsla(0, 0%, 0%, 0.2);
+    text-decoration: none !important;
+    text-transform: uppercase;
+    color: #fff !important;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: -7px 3px;
+    position: relative;
+    display: inline-block;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    transition: all 0.1s;
+}
+.button:active {
+    -webkit-transform: translateY(7px);
+    -moz-transform: translateY(7px);
+    -o-transform: translateY(7px);
+    transform: translateY(7px);
+}
+.button-purple {
+    background: #ba54d3;
+    box-shadow: 0 10px 0 #8e29a7,
+                0 11px 5px hsla(0, 0%, 0%, 0.5);
+}
+.button-purple:active {
+    box-shadow: 0 3px 0 #8e29a7,
+                0 4px 6px hsla(0, 0%, 0%, 0.7);
+}
+.button-orange {
+    background: #ff0d0d;
+    box-shadow: 0 10px 0 #c60e0e, 0 11px 5px hsl(0deg 17.2% 18.34% / 50%);
+}
+.button-orange:active {
+    box-shadow: 0 3px 0 #373737,
+                0 4px 6px hsla(0, 0%, 0%, 0.7);
+}
+.button-green {
+    background: #589900;
+    box-shadow: 0 10px 0 #3a6600,
+                0 11px 5px hsla(0, 0%, 0%, 0.5);
+}
+.button-green:active {
+    box-shadow: 0 3px 0 #3a6600,
+                0 4px 6px hsla(0, 0%, 0%, 0.7);
+}
+.button-pink {
+    background: #FF1493;
+    box-shadow: 0 10px 0 #cc006e,
+                0 11px 5px hsla(0, 0%, 0%, 0.5);
+}
+.button-pink:active {
+    box-shadow: 0 3px 0 #cc006e,
+                0 4px 6px hsla(0, 0%, 0%, 0.7);
+}
+.button-blue {
+    background: #1E90FF;
+    box-shadow: 0 10px 0 #005ab2,
+                0 11px 5px hsla(0, 0%, 0%, 0.5);
+}
+.button-blue:active {
+    box-shadow: 0 3px 0 #005ab2,
+                0 4px 6px hsla(0, 0%, 0%, 0.7);
+}
+.alerta {
+    color: #000;
+    font-size: 19px;
 }

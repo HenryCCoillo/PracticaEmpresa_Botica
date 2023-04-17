@@ -29,13 +29,9 @@ function init(){
 			$('#moneda').selectpicker('refresh');
 
 	});
-	$.post("../ajax/venta2.php?op=selectTipoPago",function(r){
-		$('#codigotipo_pago').html(r);
-		$('#codigotipo_pago').selectpicker('refresh');
 
-	});
 
-	$("#idcliente").change(rellenarCliente);
+	      $("#idcliente").change(rellenarCliente);
 
 }
 function rellenarCliente(){

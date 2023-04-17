@@ -257,8 +257,8 @@ function agregarDetalle(idarticulo,articulo,fecha_vencimiento)
 		'<td><input type="text" name="lote[]" id="lote" value="'+lote+'"></td>'+
 		'<td><input type="date" name="fecha_vencimiento[]" value="'+fecha_vencimiento+'"</td>'+
     	'<td><input type="number" name="cantidad[]" id="cantidad'+cont+'" value="'+cantidad+'" min=1></td>'+
-    	'<td><input type="number" step="0.01" name="precio_compra[]" id="precio_compra'+cont+'" min=1 value="'+precio_compra+'"></td>'+
-		'<td><input type="number" step="0.01" name="precio_venta[]" value="'+precio_venta+'" min=1></td>'+
+    	'<td><input type="number" step="0.01" name="precio_compra[]" id="precio_compra'+cont+'" min=0 value="'+precio_compra+'"></td>'+
+		'<td><input type="number" step="0.01" name="precio_venta[]" value="'+precio_venta+'" min=0></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'</tr>';
     	
