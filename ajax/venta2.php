@@ -223,6 +223,13 @@ switch ($_GET["op"]){
 			echo '<option value='.$reg->codigotipo_comprobante.'>'.$reg->descripcion_tipo_comprobante.'</option>';
 		}
 		break;
+	case 'selectTipoComprobanteReporte':
+		$rspta = $venta->selectTipoComprobanteReporte();
+		echo '<option value="all">Todos</option>';
+		while ($reg = $rspta->fetch_object()) {
+			echo '<option value='.$reg->codigotipo_comprobante.'>'.$reg->descripcion_tipo_comprobante.'</option>';
+		}
+		break;
 	case 'selectTipoPago':
 		$rspta = $venta->selectTipoPago();// -- 
 		//echo '<option value="all">Todos</option>';

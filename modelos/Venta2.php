@@ -335,6 +335,10 @@ Class Venta2
 		$sql="SELECT * from tipo_comprobante WHERE codigotipo_comprobante in (1,3) order by codigotipo_comprobante desc";
 		return ejecutarConsulta($sql);
 	}
+  public function selectTipoComprobanteReporte(){
+    $sql="SELECT * from tipo_comprobante WHERE codigotipo_comprobante in (1,3,12) order by codigotipo_comprobante desc";
+    return ejecutarConsulta($sql);
+  }
   public function selectTipoPago(){
     $sql="SELECT * from tipo_pago";
     return ejecutarConsulta($sql);

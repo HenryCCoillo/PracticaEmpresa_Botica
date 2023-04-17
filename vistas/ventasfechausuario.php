@@ -48,10 +48,22 @@ if($_SESSION['consultav']==1)
                        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                          <label>Usuario</label>
                          <select class="form-control selectpicker" name="idusuario" id="idusuario" data-live-search="true" required>
-
                          </select>
-
                        </div>
+
+                       <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                         <label>Tipo de Pago</label>
+                         <select class="form-control selectpicker" name="codigotipo_pago" id="codigotipo_pago" data-live-search="true" required>
+                         </select>
+                       </div>
+
+                       <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                          <label>Tipo de Comprobante</label>
+                          <select class="form-control selectpicker" name="codigotipo_comprobante" id="codigotipo_comprobante" data-live-search="true" required>
+                          </select>                         
+                        </div>
+
+
                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                          <button class="btn btn-success form-control" onclick="listar();">Mostrar</button>
                        </div>
@@ -66,7 +78,7 @@ if($_SESSION['consultav']==1)
                             <th>Comprobante</th>
                             <th>N° Comprobante</th>
                             <th>Total venta</th>
-                            <th>Impuesto</th>
+                            <th>Tipo de Pago</th>
                             <th>Estado</th>
 
 

@@ -131,7 +131,9 @@ switch ($_GET["op"])
     $fecha_inicio=$_REQUEST['fecha_inicio'];
     $fecha_fin=$_REQUEST['fecha_fin'];
     $idusuario=$_REQUEST['idusuario'];
-    $rspta=$consulta->ventasfechausuario($fecha_inicio,$fecha_fin,$idusuario);
+    $codigotipo_comprobante=$_REQUEST['codigotipo_comprobante'];
+    $codigotipo_pago=$_REQUEST['codigotipo_pago'];
+    $rspta=$consulta->ventasfechausuario($fecha_inicio,$fecha_fin,$idusuario,$codigotipo_comprobante,$codigotipo_pago);
     $data=Array();
     while ($reg=$rspta->fetch_object()) {
       $data[]=array(
@@ -141,7 +143,7 @@ switch ($_GET["op"])
           "3"=>$reg->descripcion_tipo_comprobante,
           "4"=>$reg->serie.' - '.$reg->correlativo,
           "5"=>$reg->total_venta,
-          "6"=>$reg->impuesto,
+          "6"=>$reg->descripcion_tipo_pago,
           "7"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado<span>':'<span class="label bg-red">Anulado<span>'
 
       );

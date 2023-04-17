@@ -4,15 +4,34 @@ function init(){
 	listar();
 	$.post("../ajax/venta2.php?op=selectUsuario",function(r){
 		$("#idusuario").html(r);
-              $('#idusuario').selectpicker('refresh');
+        $('#idusuario').selectpicker('refresh');
 
 	});
+
+	$.post("../ajax/venta2.php?op=selectTipoPago",function(r){
+		$('#codigotipo_pago').html(r);
+		$('#codigotipo_pago').selectpicker('refresh');
+	});
+
+	$.post("../ajax/venta2.php?op=selectTipoComprobanteReporte",function(r){
+		$('#codigotipo_comprobante').html(r);
+		$('#codigotipo_comprobante').selectpicker('refresh');
+
+	});
+
+
+	$('#codigotipo_pago').change(listar);
+	$('#codigotipo_comprobante').change(listar);
+
+
 }
 
 function listar(){
 	var fecha_inicio=$("#fecha_inicio").val();
 	var fecha_fin=$("#fecha_fin").val();
 	var idusuario=$("#idusuario").val();
+	var codigotipo_pago=$("#codigotipo_pago").val();
+	var codigotipo_comprobante=$("#codigotipo_comprobante").val();
 	tabla=$("#tbllistado").dataTable(
 		{
 			 "aProcessing": true, //Activamos el procesamiento de datatables
@@ -27,7 +46,7 @@ function listar(){
 		      ],
       		"ajax":{
       			url:"../ajax/consultas.php?op=ventasFechaUsuario",
-      			data:{fecha_inicio:fecha_inicio,fecha_fin:fecha_fin,idusuario:idusuario},
+      			data:{fecha_inicio:fecha_inicio,fecha_fin:fecha_fin,idusuario:idusuario,codigotipo_pago:codigotipo_pago,codigotipo_comprobante:codigotipo_comprobante},
       			type:"get",
       			dataType:"json",
       			error:function(e)
@@ -40,7 +59,7 @@ function listar(){
 		      "order":[[0,"desc"]] //Ordenar (columna,orden)
 				}
 		).DataTable();
-	$.post("../ajax/consultas.php?op=sumVentasFechaUsuario",{fecha_inicio:fecha_inicio,fecha_fin:fecha_fin,idusuario:idusuario},function(data,status){
+	$.post("../ajax/consultas.php?op=sumVentasFechaUsuario",{fecha_inicio:fecha_inicio,fecha_fin:fecha_fin,idusuario:idusuario,codigotipo_pago:codigotipo_pago,codigotipo_comprobante:codigotipo_comprobante},function(data,status){
 		data=JSON.parse(data);
 		$("#usuari").text(data.usuario);
 		$("#sumventa").text(addCommas(data.sumatotalusuario));
