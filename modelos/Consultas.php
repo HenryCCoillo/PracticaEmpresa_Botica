@@ -61,6 +61,16 @@ Class Consultas
     }
 
     public function ventasfechausuario($fecha_inicio,$fecha_fin,$idusuario,$codigotipo_comprobante,$codigotipo_pago) {
+      $where_codigotipo_pago = "";
+      if ($codigotipo_pago != "all") {
+        $where_codigotipo_pago =  " AND v.codigotipo_pago = '$codigotipo_pago' ";
+      }
+      // --
+      $where_codigotipo_comprobante = "";
+      if ($codigotipo_comprobante != "all") {
+        $where_codigotipo_comprobante =  " AND v.codigotipo_comprobante = '$codigotipo_comprobante' ";
+      }
+
       // --
       if ($idusuario == "all") {
         $sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as usuario,tp.descripcion_tipo_pago, p.nombre as cliente, p.num_documento as num_doc,v.codigotipo_comprobante,tc.descripcion_tipo_comprobante,v.serie,v.correlativo,v.total_venta,v.impuesto,v.estado 
@@ -68,8 +78,11 @@ Class Consultas
         inner join usuario u on v.idusuario=u.idusuario 
         INNER JOIN tipo_comprobante tc ON tc.codigotipo_comprobante=v.codigotipo_comprobante 
         INNER JOIN tipo_pago tp ON tp.codigotipo_pago=v.codigotipo_pago
-        where  date(v.fecha_hora)>='$fecha_inicio' and date(v.fecha_hora)<='$fecha_fin' 
-        AND v.codigotipo_comprobante in (1,3) and v.estado!='Cotizado' and v.estado!='Anulado' and v.estado!='AnuladoC'";
+        where  date(v.fecha_hora)>='$fecha_inicio' and date(v.fecha_hora)<='$fecha_fin' $where_codigotipo_comprobante $where_codigotipo_pago 
+        AND v.codigotipo_comprobante in (1,3) 
+        and v.estado!='Cotizado' 
+        and v.estado!='Anulado' 
+        and v.estado!='AnuladoC'";
       } else {
         $sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as usuario,tp.descripcion_tipo_pago, p.nombre as cliente, p.num_documento as num_doc,v.codigotipo_comprobante,tc.descripcion_tipo_comprobante,v.serie,v.correlativo,v.total_venta,v.impuesto,v.estado from venta v inner join persona p on v.idcliente=p.idpersona inner join usuario u on v.idusuario=u.idusuario INNER JOIN tipo_comprobante tc ON tc.codigotipo_comprobante=v.codigotipo_comprobante INNER JOIN tipo_pago tp ON tp.codigotipo_pago=v.codigotipo_pago where v.idusuario='$idusuario' and date(v.fecha_hora)>='$fecha_inicio' and date(v.fecha_hora)<='$fecha_fin' AND v.codigotipo_comprobante in (1,3) and v.estado!='Cotizado' and v.estado!='Anulado' and v.estado!='AnuladoC'";
       }
