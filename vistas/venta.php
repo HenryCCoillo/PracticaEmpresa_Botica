@@ -78,9 +78,8 @@ if ($_SESSION['ventas']==1)
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Fecha(*):</label>
                             <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="" readonly>
-                          </div>
-                          
-                          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                          </div>                        
+                          <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Numero de documento:</label>
                             <input type="text" class="form-control" name="numdireccion" id="numdireccion" placeholder="Numero de documento">
                           </div>
@@ -88,15 +87,19 @@ if ($_SESSION['ventas']==1)
                             <label>Dirección:</label>
                             <input type="text" class="form-control" name="direccioncliente" id="direccioncliente" placeholder="Dirección">
                           </div>
+                          <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <label>Tipo Pago(*):</label>
+                            <select name="codigotipo_pago" id="codigotipo_pago" class="form-control selectpicker" required="" data-live-search="true"></select>
+                          </div>
 
-
-
-                          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                          <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Tipo Comprobante(*):</label>
                             <select name="codigotipo_comprobante" id="codigotipo_comprobante" class="form-control selectpicker" required="" data-live-search="true">
                               
                             </select>
                           </div>
+
+
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Impuesto:</label>
                             <input type="text" class="form-control" name="impuesto" id="impuesto" required="" >

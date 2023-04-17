@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
--- https://www.phpmyadmin.net/
+-- version 4.2.11
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2023 a las 05:30:54
--- Versión del servidor: 10.1.32-MariaDB
--- Versión de PHP: 5.6.36
+-- Tiempo de generación: 17-04-2023 a las 23:15:28
+-- Versión del servidor: 5.6.21
+-- Versión de PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `soluciones_botica`
@@ -28,8 +26,8 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `articulo`
 --
 
-CREATE TABLE `articulo` (
-  `idarticulo` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `articulo` (
+`idarticulo` int(11) NOT NULL,
   `idcategoria` int(11) NOT NULL,
   `codigo` varchar(50) NOT NULL,
   `nombre` varchar(100) NOT NULL,
@@ -44,14 +42,14 @@ CREATE TABLE `articulo` (
   `stock_ingreso` int(11) NOT NULL,
   `fecha_vencimiento` date NOT NULL,
   `id_tipo_venta_articulo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=180 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `articulo`
 --
 
 INSERT INTO `articulo` (`idarticulo`, `idcategoria`, `codigo`, `nombre`, `stock`, `descripcion`, `imagen`, `unidad_medida`, `descripcion_otros`, `condicion`, `afectacion`, `stock_salida`, `stock_ingreso`, `fecha_vencimiento`, `id_tipo_venta_articulo`) VALUES
-(1, 5, '', 'IBUPROFENO 100MG/5ML X 60ML JBE', 10, '', '', 'NIU', '', 1, 'Gravado', 0, 10, '2023-04-30', 0),
+(1, 5, '', 'IBUPROFENO 100MG/5ML X 60ML JBE', 9, '', '', 'NIU', '', 1, 'Gravado', 1, 10, '2023-04-30', 0),
 (2, 5, '', 'ZENTEL 400MG X 50 TAB', 0, 'ALBENDAZOL', '', 'NIU', '', 1, 'Gravado', 0, 0, '0000-00-00', 2025),
 (3, 5, '', 'ASPIRINA 100 MG X 100 TAB', 10, 'ACIDO ACETIL SALICILICO', '', 'NIU', '', 1, 'Gravado', 0, 10, '0000-00-00', 2023),
 (4, 5, '', 'CLOTRIMAZOL CREMA 20 GR', 0, 'CLOTRIMAZOL', '', 'NIU', '', 1, 'Gravado', 0, 0, '0000-00-00', 2024),
@@ -236,12 +234,12 @@ INSERT INTO `articulo` (`idarticulo`, `idcategoria`, `codigo`, `nombre`, `stock`
 -- Estructura de tabla para la tabla `categoria`
 --
 
-CREATE TABLE `categoria` (
-  `idcategoria` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `categoria` (
+`idcategoria` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(256) DEFAULT NULL,
   `condicion` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -260,8 +258,8 @@ INSERT INTO `categoria` (`idcategoria`, `nombre`, `descripcion`, `condicion`) VA
 -- Estructura de tabla para la tabla `confidencial`
 --
 
-CREATE TABLE `confidencial` (
-  `idconfidencial` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `confidencial` (
+`idconfidencial` int(11) NOT NULL,
   `idpersona` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
   `serie` varchar(4) NOT NULL,
@@ -277,8 +275,8 @@ CREATE TABLE `confidencial` (
 -- Estructura de tabla para la tabla `cotizacion`
 --
 
-CREATE TABLE `cotizacion` (
-  `idcotizacion` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `cotizacion` (
+`idcotizacion` int(11) NOT NULL,
   `idventa` int(11) NOT NULL,
   `idarticulo` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
@@ -295,8 +293,8 @@ CREATE TABLE `cotizacion` (
 -- Estructura de tabla para la tabla `desarrollo`
 --
 
-CREATE TABLE `desarrollo` (
-  `idsoporte` int(15) NOT NULL,
+CREATE TABLE IF NOT EXISTS `desarrollo` (
+`idsoporte` int(15) NOT NULL,
   `nombre_cliente` varchar(50) DEFAULT NULL,
   `telefono` varchar(12) DEFAULT NULL,
   `fecha_ingreso` varchar(50) DEFAULT NULL,
@@ -325,8 +323,8 @@ CREATE TABLE `desarrollo` (
 -- Estructura de tabla para la tabla `detalle_ingreso`
 --
 
-CREATE TABLE `detalle_ingreso` (
-  `iddetalle_ingreso` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `detalle_ingreso` (
+`iddetalle_ingreso` int(11) NOT NULL,
   `idingreso` int(11) NOT NULL,
   `idarticulo` int(11) NOT NULL,
   `laboratorio` varchar(100) NOT NULL,
@@ -337,7 +335,7 @@ CREATE TABLE `detalle_ingreso` (
   `precio_venta` decimal(11,2) NOT NULL,
   `incentivo` decimal(11,2) NOT NULL,
   `fecha_vencimiento` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `detalle_ingreso`
@@ -359,12 +357,13 @@ INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idarticulo`, `
 --
 -- Disparadores `detalle_ingreso`
 --
-DELIMITER $$
-CREATE TRIGGER `tr_updtStockIngreso` AFTER INSERT ON `detalle_ingreso` FOR EACH ROW BEGIN 
+DELIMITER //
+CREATE TRIGGER `tr_updtStockIngreso` AFTER INSERT ON `detalle_ingreso`
+ FOR EACH ROW BEGIN 
 UPDATE articulo SET stock = stock + NEW.cantidad, stock_ingreso=stock_ingreso + NEW.cantidad
 WHERE articulo.idarticulo = NEW.idarticulo;
 END
-$$
+//
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -373,8 +372,8 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `detalle_proforma`
 --
 
-CREATE TABLE `detalle_proforma` (
-  `iddetalle_proforma` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `detalle_proforma` (
+`iddetalle_proforma` int(11) NOT NULL,
   `idproforma` int(11) NOT NULL,
   `descripcion` varchar(300) NOT NULL,
   `cantidad` int(11) NOT NULL,
@@ -387,8 +386,8 @@ CREATE TABLE `detalle_proforma` (
 -- Estructura de tabla para la tabla `detalle_venta`
 --
 
-CREATE TABLE `detalle_venta` (
-  `iddetalle_venta` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `detalle_venta` (
+`iddetalle_venta` int(11) NOT NULL,
   `idventa` int(11) NOT NULL,
   `idarticulo` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
@@ -398,20 +397,28 @@ CREATE TABLE `detalle_venta` (
   `item` int(11) NOT NULL,
   `serie` varchar(100) DEFAULT NULL,
   `estado` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=REDUNDANT;
+
+--
+-- Volcado de datos para la tabla `detalle_venta`
+--
+
+INSERT INTO `detalle_venta` (`iddetalle_venta`, `idventa`, `idarticulo`, `cantidad`, `precio_venta`, `descuento`, `fecha_mas_vendido`, `item`, `serie`, `estado`) VALUES
+(1, 1, 1, 1, '11.00', '0.00', '2023-04-17 16:09:55', 1, '', 'Aceptado');
 
 --
 -- Disparadores `detalle_venta`
 --
-DELIMITER $$
-CREATE TRIGGER `tr_updtStockVenta` AFTER INSERT ON `detalle_venta` FOR EACH ROW BEGIN
+DELIMITER //
+CREATE TRIGGER `tr_updtStockVenta` AFTER INSERT ON `detalle_venta`
+ FOR EACH ROW BEGIN
 	IF(NEW.estado != 'Cancelado' || NEW.estado = null ) THEN
 		UPDATE articulo SET stock = stock - NEW.cantidad,
 		stock_salida=stock_salida + NEW.cantidad
 		WHERE articulo.idarticulo = NEW.idarticulo;
 	END IF;
 END
-$$
+//
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -420,7 +427,7 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `estado_entrega`
 --
 
-CREATE TABLE `estado_entrega` (
+CREATE TABLE IF NOT EXISTS `estado_entrega` (
   `cancelado` int(10) NOT NULL,
   `pendiente_entrega` int(10) NOT NULL,
   `sin_servicio` int(10) NOT NULL,
@@ -433,7 +440,7 @@ CREATE TABLE `estado_entrega` (
 -- Estructura de tabla para la tabla `estado_pago`
 --
 
-CREATE TABLE `estado_pago` (
+CREATE TABLE IF NOT EXISTS `estado_pago` (
   `pendiente_pago` int(11) NOT NULL,
   `pagado_pago` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -444,7 +451,7 @@ CREATE TABLE `estado_pago` (
 -- Estructura de tabla para la tabla `estado_servicio`
 --
 
-CREATE TABLE `estado_servicio` (
+CREATE TABLE IF NOT EXISTS `estado_servicio` (
   `pendiente` int(10) NOT NULL,
   `reparacion` int(10) NOT NULL,
   `terminado` int(10) NOT NULL
@@ -456,8 +463,8 @@ CREATE TABLE `estado_servicio` (
 -- Estructura de tabla para la tabla `ingreso`
 --
 
-CREATE TABLE `ingreso` (
-  `idingreso` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ingreso` (
+`idingreso` int(11) NOT NULL,
   `idproveedor` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
   `tipo_comprobante` varchar(20) NOT NULL,
@@ -469,7 +476,7 @@ CREATE TABLE `ingreso` (
   `valor_cuota` decimal(11,2) DEFAULT NULL,
   `total_compra` decimal(11,2) NOT NULL,
   `estado` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `ingreso`
@@ -485,14 +492,14 @@ INSERT INTO `ingreso` (`idingreso`, `idproveedor`, `idusuario`, `tipo_comprobant
 -- Estructura de tabla para la tabla `moneda`
 --
 
-CREATE TABLE `moneda` (
-  `idmoneda` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `moneda` (
+`idmoneda` int(11) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
   `simbolo` varchar(45) NOT NULL,
   `codigo` varchar(5) NOT NULL,
   `pais_referencia` varchar(100) DEFAULT NULL,
   `num` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `moneda`
@@ -507,12 +514,12 @@ INSERT INTO `moneda` (`idmoneda`, `descripcion`, `simbolo`, `codigo`, `pais_refe
 -- Estructura de tabla para la tabla `motivo_documento`
 --
 
-CREATE TABLE `motivo_documento` (
-  `idmotivo_documento` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `motivo_documento` (
+`idmotivo_documento` int(11) NOT NULL,
   `codigo_motivo` varchar(5) NOT NULL,
   `motivo` varchar(100) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `motivo_documento`
@@ -533,8 +540,8 @@ INSERT INTO `motivo_documento` (`idmotivo_documento`, `codigo_motivo`, `motivo`,
 -- Estructura de tabla para la tabla `notacredito`
 --
 
-CREATE TABLE `notacredito` (
-  `idnota_credito` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `notacredito` (
+`idnota_credito` int(11) NOT NULL,
   `idventa` int(11) NOT NULL,
   `idarticulo` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
@@ -549,13 +556,13 @@ CREATE TABLE `notacredito` (
 -- Estructura de tabla para la tabla `pago`
 --
 
-CREATE TABLE `pago` (
-  `idpago` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pago` (
+`idpago` int(11) NOT NULL,
   `idingreso` int(11) NOT NULL,
   `valor_cuota` decimal(10,2) NOT NULL,
   `fecha_pago` datetime NOT NULL,
   `estado` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `pago`
@@ -570,8 +577,8 @@ INSERT INTO `pago` (`idpago`, `idingreso`, `valor_cuota`, `fecha_pago`, `estado`
 -- Estructura de tabla para la tabla `perfil`
 --
 
-CREATE TABLE `perfil` (
-  `idperfil` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `perfil` (
+`idperfil` int(11) NOT NULL,
   `razon_social` varchar(200) NOT NULL,
   `nombre_comercial` varchar(100) DEFAULT NULL,
   `ruc` varchar(45) NOT NULL,
@@ -585,7 +592,7 @@ CREATE TABLE `perfil` (
   `logo` varchar(256) NOT NULL,
   `pais` varchar(45) NOT NULL,
   `ubigeo` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `perfil`
@@ -600,10 +607,10 @@ INSERT INTO `perfil` (`idperfil`, `razon_social`, `nombre_comercial`, `ruc`, `di
 -- Estructura de tabla para la tabla `permiso`
 --
 
-CREATE TABLE `permiso` (
-  `idpermiso` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `permiso` (
+`idpermiso` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `permiso`
@@ -626,8 +633,8 @@ INSERT INTO `permiso` (`idpermiso`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `persona`
 --
 
-CREATE TABLE `persona` (
-  `idpersona` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `persona` (
+`idpersona` int(11) NOT NULL,
   `tipo_persona` varchar(20) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `tipo_documento` varchar(20) DEFAULT NULL,
@@ -637,7 +644,7 @@ CREATE TABLE `persona` (
   `email` varchar(50) DEFAULT NULL,
   `razon_social` varchar(256) DEFAULT NULL,
   `puntos` int(11) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `persona`
@@ -646,7 +653,7 @@ CREATE TABLE `persona` (
 INSERT INTO `persona` (`idpersona`, `tipo_persona`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `razon_social`, `puntos`) VALUES
 (1, 'Cliente', 'JULCA BRONCANO WILDER FLORENTINO', 'RUC', '10410697551', '-', '575757', '', 'JULCA BRONCANO WILDER FLORENTINO', 491),
 (2, 'Proveedor', 'asdasd', 'DNI', '99999999', '', '', '', '', 0),
-(3, 'Cliente', 'Soluciones Integrales JB SAC', 'RUC', '10410697551', 'Lopez de Zuñiga N°  254', '996720630', 'wilderjulca@solucionesintegralesjb.com', 'Wilder Florenitno Julca Broncano', 0),
+(3, 'Cliente', 'Soluciones Integrales JB SAC', 'RUC', '10410697551', 'Lopez de Zuñiga N°  254', '996720630', 'wilderjulca@solucionesintegralesjb.com', 'Wilder Florenitno Julca Broncano', 11),
 (4, 'Cliente', 'JULCA BRONCANO WILDER FLORENTINO', 'RUC', '10410697551', '-', '', '', 'JULCA BRONCANO WILDER FLORENTINO', 6),
 (5, 'Cliente', 'Wilder Florentino Julca Broncano', 'DNI', '41069755', 'Calle Luis Alberto De Las Casas', '996720630', 'wilderjulca@solucionesintegralesjb.com', '', 8814),
 (6, 'Proveedor', 'Proveedor Test 1', 'DNI', '000000000000', 'Direccion Test 1', '', '', '', 0),
@@ -658,8 +665,8 @@ INSERT INTO `persona` (`idpersona`, `tipo_persona`, `nombre`, `tipo_documento`, 
 -- Estructura de tabla para la tabla `proforma`
 --
 
-CREATE TABLE `proforma` (
-  `idproforma` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `proforma` (
+`idproforma` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
   `idcliente` int(11) NOT NULL,
   `correlativo` varchar(10) NOT NULL,
@@ -669,7 +676,7 @@ CREATE TABLE `proforma` (
   `total_venta` decimal(9,2) NOT NULL,
   `fecha_hora` date NOT NULL,
   `estado` varchar(20) CHARACTER SET utf8mb4 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `proforma`
@@ -685,8 +692,8 @@ INSERT INTO `proforma` (`idproforma`, `idusuario`, `idcliente`, `correlativo`, `
 -- Estructura de tabla para la tabla `soporte`
 --
 
-CREATE TABLE `soporte` (
-  `idsoporte` int(15) NOT NULL,
+CREATE TABLE IF NOT EXISTS `soporte` (
+`idsoporte` int(15) NOT NULL,
   `nombre_cliente` varchar(50) DEFAULT NULL,
   `telefono` varchar(12) DEFAULT NULL,
   `fecha_ingreso` varchar(50) DEFAULT NULL,
@@ -715,7 +722,7 @@ CREATE TABLE `soporte` (
 -- Estructura de tabla para la tabla `tipo_comprobante`
 --
 
-CREATE TABLE `tipo_comprobante` (
+CREATE TABLE IF NOT EXISTS `tipo_comprobante` (
   `codigotipo_comprobante` int(11) NOT NULL,
   `descripcion_tipo_comprobante` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -736,14 +743,34 @@ INSERT INTO `tipo_comprobante` (`codigotipo_comprobante`, `descripcion_tipo_comp
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tipo_pago`
+--
+
+CREATE TABLE IF NOT EXISTS `tipo_pago` (
+`codigotipo_pago` int(11) NOT NULL,
+  `descripcion_tipo_pago` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipo_pago`
+--
+
+INSERT INTO `tipo_pago` (`codigotipo_pago`, `descripcion_tipo_pago`) VALUES
+(1, 'Contado'),
+(2, 'Credito'),
+(3, 'Transferencia');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_venta_articulo`
 --
 
-CREATE TABLE `tipo_venta_articulo` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tipo_venta_articulo` (
+`id` int(11) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
   `estado` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tipo_venta_articulo`
@@ -759,8 +786,8 @@ INSERT INTO `tipo_venta_articulo` (`id`, `descripcion`, `estado`) VALUES
 -- Estructura de tabla para la tabla `transporte`
 --
 
-CREATE TABLE `transporte` (
-  `idtansporte` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transporte` (
+`idtansporte` int(11) NOT NULL,
   `idvehiculo` int(11) NOT NULL,
   `direccion_partida` varchar(200) NOT NULL,
   `direccion_llegada` varchar(200) NOT NULL,
@@ -783,10 +810,10 @@ CREATE TABLE `transporte` (
 -- Estructura de tabla para la tabla `ubicacion`
 --
 
-CREATE TABLE `ubicacion` (
-  `id_ubicacion` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ubicacion` (
+`id_ubicacion` int(11) NOT NULL,
   `almacen` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ubicacion`
@@ -805,8 +832,8 @@ INSERT INTO `ubicacion` (`id_ubicacion`, `almacen`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
-  `idusuario` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `usuario` (
+`idusuario` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `tipo_documento` varchar(20) NOT NULL,
   `num_documento` varchar(20) NOT NULL,
@@ -819,7 +846,7 @@ CREATE TABLE `usuario` (
   `imagen` varchar(50) DEFAULT NULL,
   `condicion` tinyint(1) NOT NULL DEFAULT '1',
   `incentivo_total` decimal(11,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -828,7 +855,8 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`idusuario`, `nombre`, `tipo_documento`, `num_documento`, `direccion`, `telefono`, `email`, `cargo`, `login`, `clave`, `imagen`, `condicion`, `incentivo_total`) VALUES
 (1, 'Wilder  Julca', 'RUC', '10410697551', 'Calle Luis Alberto De Las Casas Nº 111', '+51996720630', 'wilderjulca@solucionesintegralesjb.com', 'Administrador', 'julca', 'e718fd881c8b55f21268e1ca1b84c092b9a7cbb5c6d5aed0b6c54108244da710', '1681660991.png', 1, NULL),
 (8, 'Soluciones Integrales', 'RUC', '10410697551', 'Calle Luis Alberto De Las Casas Nº 111', '+51996720630', 'wilderjulca@solucionesintegralesjb.com', 'Administrador', 'admin', '835d6dc88b708bc646d6db82c853ef4182fabbd4a8de59c213f2b5ab3ae7d9be', '1681665027.png', 1, NULL),
-(9, 'Ventas', 'RUC', '10737995246', 'Mz. C. Lt. 02 AA. HH. Señor De  La  Soledad  Chancay', '', '', 'Vendedor', 'ventas', 'ad1f354a6ed47d50d60aecd3aad1ca2c32cf03141efef1ed5f4cace4d9b8df1c', '1681665618.png', 1, NULL);
+(9, 'Ventas', 'RUC', '10737995246', 'Mz. C. Lt. 02 AA. HH. Señor De  La  Soledad  Chancay', '', '', 'Vendedor', 'ventas', 'ad1f354a6ed47d50d60aecd3aad1ca2c32cf03141efef1ed5f4cace4d9b8df1c', '1681665618.png', 1, NULL),
+(10, 'admin1', 'DNI', '123', '', '', '', 'Administrador', 'admin1', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '', 1, '0.00');
 
 -- --------------------------------------------------------
 
@@ -836,11 +864,11 @@ INSERT INTO `usuario` (`idusuario`, `nombre`, `tipo_documento`, `num_documento`,
 -- Estructura de tabla para la tabla `usuario_permiso`
 --
 
-CREATE TABLE `usuario_permiso` (
-  `idusuario_permiso` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `usuario_permiso` (
+`idusuario_permiso` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
   `idpermiso` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=354 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuario_permiso`
@@ -876,7 +904,16 @@ INSERT INTO `usuario_permiso` (`idusuario_permiso`, `idusuario`, `idpermiso`) VA
 (341, 8, 6),
 (342, 8, 7),
 (343, 8, 8),
-(344, 8, 9);
+(344, 8, 9),
+(345, 10, 1),
+(346, 10, 2),
+(347, 10, 3),
+(348, 10, 4),
+(349, 10, 5),
+(350, 10, 6),
+(351, 10, 7),
+(352, 10, 8),
+(353, 10, 9);
 
 -- --------------------------------------------------------
 
@@ -884,8 +921,8 @@ INSERT INTO `usuario_permiso` (`idusuario_permiso`, `idusuario`, `idpermiso`) VA
 -- Estructura de tabla para la tabla `valor_cambio`
 --
 
-CREATE TABLE `valor_cambio` (
-  `idvalor_cambio` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `valor_cambio` (
+`idvalor_cambio` int(11) NOT NULL,
   `fecha` datetime NOT NULL,
   `valor_compra` decimal(4,3) NOT NULL,
   `valor_venta` decimal(4,3) NOT NULL,
@@ -898,8 +935,8 @@ CREATE TABLE `valor_cambio` (
 -- Estructura de tabla para la tabla `vehiculo`
 --
 
-CREATE TABLE `vehiculo` (
-  `idvehiculo` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `vehiculo` (
+`idvehiculo` int(11) NOT NULL,
   `idconductor` int(11) NOT NULL,
   `placa` varchar(45) DEFAULT NULL,
   `observacion` varchar(45) DEFAULT NULL,
@@ -915,8 +952,8 @@ CREATE TABLE `vehiculo` (
 -- Estructura de tabla para la tabla `venta`
 --
 
-CREATE TABLE `venta` (
-  `idventa` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `venta` (
+`idventa` int(11) NOT NULL,
   `idcliente` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
   `codigotipo_comprobante` int(11) NOT NULL,
@@ -937,8 +974,16 @@ CREATE TABLE `venta` (
   `idmoneda` int(11) NOT NULL,
   `idmotivo_doc` int(11) DEFAULT NULL,
   `sustento` varchar(200) DEFAULT NULL,
-  `doc_relacionado` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `doc_relacionado` int(11) DEFAULT NULL,
+  `codigotipo_pago` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`idventa`, `idcliente`, `idusuario`, `codigotipo_comprobante`, `serie`, `correlativo`, `fecha_hora`, `impuesto`, `op_gravadas`, `op_inafectas`, `op_exoneradas`, `op_gratuitas`, `isc`, `total_descuentos`, `total_igv`, `total_venta`, `leyenda`, `estado`, `idmoneda`, `idmotivo_doc`, `sustento`, `doc_relacionado`, `codigotipo_pago`) VALUES
+(1, 3, 10, 3, 'B001', '00000001', '2023-04-17 21:09:55', '18.00', '9.32', '0.00', '0.00', '0.00', '0.00', '0.00', '1.68', '11.00', 'ONCE  Y 00/100 SOLES', 'Aceptado', 1, NULL, NULL, NULL, 2);
 
 --
 -- Índices para tablas volcadas
@@ -948,198 +993,169 @@ CREATE TABLE `venta` (
 -- Indices de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  ADD PRIMARY KEY (`idarticulo`),
-  ADD UNIQUE KEY `nombre_UNIQUE` (`nombre`),
-  ADD KEY `fk_articulo_categoria_idx` (`idcategoria`);
+ ADD PRIMARY KEY (`idarticulo`), ADD UNIQUE KEY `nombre_UNIQUE` (`nombre`), ADD KEY `fk_articulo_categoria_idx` (`idcategoria`);
 
 --
 -- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`idcategoria`),
-  ADD UNIQUE KEY `nombre_UNIQUE` (`nombre`);
+ ADD PRIMARY KEY (`idcategoria`), ADD UNIQUE KEY `nombre_UNIQUE` (`nombre`);
 
 --
 -- Indices de la tabla `confidencial`
 --
 ALTER TABLE `confidencial`
-  ADD PRIMARY KEY (`idconfidencial`),
-  ADD KEY `confidencial_persona_fk` (`idpersona`),
-  ADD KEY `confidencial_usuario_fk` (`idusuario`);
+ ADD PRIMARY KEY (`idconfidencial`), ADD KEY `confidencial_persona_fk` (`idpersona`), ADD KEY `confidencial_usuario_fk` (`idusuario`);
 
 --
 -- Indices de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  ADD PRIMARY KEY (`idcotizacion`),
-  ADD KEY `fk_cotizacion_idventa_idx` (`idventa`),
-  ADD KEY `fk_cotizacion_idarticulo_idx` (`idarticulo`);
+ ADD PRIMARY KEY (`idcotizacion`), ADD KEY `fk_cotizacion_idventa_idx` (`idventa`), ADD KEY `fk_cotizacion_idarticulo_idx` (`idarticulo`);
 
 --
 -- Indices de la tabla `desarrollo`
 --
 ALTER TABLE `desarrollo`
-  ADD PRIMARY KEY (`idsoporte`);
+ ADD PRIMARY KEY (`idsoporte`);
 
 --
 -- Indices de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  ADD PRIMARY KEY (`iddetalle_ingreso`),
-  ADD KEY `fk_detalle_ingreso_ingreso_idx` (`idingreso`),
-  ADD KEY `fk_detalle_ingreso_articulo_idx` (`idarticulo`);
+ ADD PRIMARY KEY (`iddetalle_ingreso`), ADD KEY `fk_detalle_ingreso_ingreso_idx` (`idingreso`), ADD KEY `fk_detalle_ingreso_articulo_idx` (`idarticulo`);
 
 --
 -- Indices de la tabla `detalle_proforma`
 --
 ALTER TABLE `detalle_proforma`
-  ADD PRIMARY KEY (`iddetalle_proforma`),
-  ADD KEY `fk_detalle_proforma_proforma` (`idproforma`);
+ ADD PRIMARY KEY (`iddetalle_proforma`), ADD KEY `fk_detalle_proforma_proforma` (`idproforma`);
 
 --
 -- Indices de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  ADD PRIMARY KEY (`iddetalle_venta`),
-  ADD KEY `fk_detalle_venta_venta_idx` (`idventa`),
-  ADD KEY `fk_detalle_venta_articulo_idx` (`idarticulo`);
+ ADD PRIMARY KEY (`iddetalle_venta`), ADD KEY `fk_detalle_venta_venta_idx` (`idventa`), ADD KEY `fk_detalle_venta_articulo_idx` (`idarticulo`);
 
 --
 -- Indices de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  ADD PRIMARY KEY (`idingreso`),
-  ADD KEY `fk_ingreso_persona_idx` (`idproveedor`),
-  ADD KEY `fk_ingreso_usuario_idx` (`idusuario`);
+ ADD PRIMARY KEY (`idingreso`), ADD KEY `fk_ingreso_persona_idx` (`idproveedor`), ADD KEY `fk_ingreso_usuario_idx` (`idusuario`);
 
 --
 -- Indices de la tabla `moneda`
 --
 ALTER TABLE `moneda`
-  ADD PRIMARY KEY (`idmoneda`);
+ ADD PRIMARY KEY (`idmoneda`);
 
 --
 -- Indices de la tabla `motivo_documento`
 --
 ALTER TABLE `motivo_documento`
-  ADD PRIMARY KEY (`idmotivo_documento`);
+ ADD PRIMARY KEY (`idmotivo_documento`);
 
 --
 -- Indices de la tabla `notacredito`
 --
 ALTER TABLE `notacredito`
-  ADD PRIMARY KEY (`idnota_credito`),
-  ADD KEY `fk_notaCredito_venta_idx` (`idventa`),
-  ADD KEY `fk_notaCredito_articulo_idx` (`idarticulo`);
+ ADD PRIMARY KEY (`idnota_credito`), ADD KEY `fk_notaCredito_venta_idx` (`idventa`), ADD KEY `fk_notaCredito_articulo_idx` (`idarticulo`);
 
 --
 -- Indices de la tabla `pago`
 --
 ALTER TABLE `pago`
-  ADD PRIMARY KEY (`idpago`),
-  ADD KEY `FK_pago_ingreso` (`idingreso`);
+ ADD PRIMARY KEY (`idpago`), ADD KEY `FK_pago_ingreso` (`idingreso`);
 
 --
 -- Indices de la tabla `perfil`
 --
 ALTER TABLE `perfil`
-  ADD PRIMARY KEY (`idperfil`);
+ ADD PRIMARY KEY (`idperfil`);
 
 --
 -- Indices de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  ADD PRIMARY KEY (`idpermiso`);
+ ADD PRIMARY KEY (`idpermiso`);
 
 --
 -- Indices de la tabla `persona`
 --
 ALTER TABLE `persona`
-  ADD PRIMARY KEY (`idpersona`);
+ ADD PRIMARY KEY (`idpersona`);
 
 --
 -- Indices de la tabla `proforma`
 --
 ALTER TABLE `proforma`
-  ADD PRIMARY KEY (`idproforma`),
-  ADD KEY `fk_proforma_usuario` (`idusuario`),
-  ADD KEY `fk_proforma_persona` (`idcliente`);
+ ADD PRIMARY KEY (`idproforma`), ADD KEY `fk_proforma_usuario` (`idusuario`), ADD KEY `fk_proforma_persona` (`idcliente`);
 
 --
 -- Indices de la tabla `soporte`
 --
 ALTER TABLE `soporte`
-  ADD PRIMARY KEY (`idsoporte`);
+ ADD PRIMARY KEY (`idsoporte`);
 
 --
 -- Indices de la tabla `tipo_comprobante`
 --
 ALTER TABLE `tipo_comprobante`
-  ADD PRIMARY KEY (`codigotipo_comprobante`);
+ ADD PRIMARY KEY (`codigotipo_comprobante`);
+
+--
+-- Indices de la tabla `tipo_pago`
+--
+ALTER TABLE `tipo_pago`
+ ADD PRIMARY KEY (`codigotipo_pago`);
 
 --
 -- Indices de la tabla `tipo_venta_articulo`
 --
 ALTER TABLE `tipo_venta_articulo`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `transporte`
 --
 ALTER TABLE `transporte`
-  ADD PRIMARY KEY (`idtansporte`),
-  ADD KEY `fk_transporte_vehiculo_idx` (`idvehiculo`),
-  ADD KEY `fk_transporte_persona_idx` (`iddestinatario`),
-  ADD KEY `fk_transporte_articulo_idx` (`idarticulo`),
-  ADD KEY `fk_transporte_guia_remision_idx` (`idguia_remision`);
+ ADD PRIMARY KEY (`idtansporte`), ADD KEY `fk_transporte_vehiculo_idx` (`idvehiculo`), ADD KEY `fk_transporte_persona_idx` (`iddestinatario`), ADD KEY `fk_transporte_articulo_idx` (`idarticulo`), ADD KEY `fk_transporte_guia_remision_idx` (`idguia_remision`);
 
 --
 -- Indices de la tabla `ubicacion`
 --
 ALTER TABLE `ubicacion`
-  ADD PRIMARY KEY (`id_ubicacion`);
+ ADD PRIMARY KEY (`id_ubicacion`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idusuario`),
-  ADD UNIQUE KEY `login_UNIQUE` (`login`);
+ ADD PRIMARY KEY (`idusuario`), ADD UNIQUE KEY `login_UNIQUE` (`login`);
 
 --
 -- Indices de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
-  ADD PRIMARY KEY (`idusuario_permiso`),
-  ADD KEY `fk_usuario_permiso_permiso_idx` (`idpermiso`),
-  ADD KEY `fk_usuario_permiso_usuario_idx` (`idusuario`);
+ ADD PRIMARY KEY (`idusuario_permiso`), ADD KEY `fk_usuario_permiso_permiso_idx` (`idpermiso`), ADD KEY `fk_usuario_permiso_usuario_idx` (`idusuario`);
 
 --
 -- Indices de la tabla `valor_cambio`
 --
 ALTER TABLE `valor_cambio`
-  ADD PRIMARY KEY (`idvalor_cambio`),
-  ADD KEY `fk_valor_cambio_moneda_idx` (`idmoneda`);
+ ADD PRIMARY KEY (`idvalor_cambio`), ADD KEY `fk_valor_cambio_moneda_idx` (`idmoneda`);
 
 --
 -- Indices de la tabla `vehiculo`
 --
 ALTER TABLE `vehiculo`
-  ADD PRIMARY KEY (`idvehiculo`),
-  ADD KEY `fk_idconductor_idx` (`idconductor`),
-  ADD KEY `fk_vehiculo_empresa_transportista_idx` (`idempresa_transportista`);
+ ADD PRIMARY KEY (`idvehiculo`), ADD KEY `fk_idconductor_idx` (`idconductor`), ADD KEY `fk_vehiculo_empresa_transportista_idx` (`idempresa_transportista`);
 
 --
 -- Indices de la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD PRIMARY KEY (`idventa`),
-  ADD KEY `fk_venta_persona_idx` (`idcliente`),
-  ADD KEY `fk_venta_usuario_idx` (`idusuario`),
-  ADD KEY `fk_venta_codigotipo_comp_idx` (`codigotipo_comprobante`),
-  ADD KEY `fk_venta_moneda_idx` (`idmoneda`),
-  ADD KEY `fk_venta_motivo_idx` (`idmotivo_doc`),
-  ADD KEY `fk_venta_doc_relacionado_idx` (`doc_relacionado`) USING BTREE;
+ ADD PRIMARY KEY (`idventa`), ADD KEY `fk_venta_persona_idx` (`idcliente`), ADD KEY `fk_venta_usuario_idx` (`idusuario`), ADD KEY `fk_venta_codigotipo_comp_idx` (`codigotipo_comprobante`), ADD KEY `fk_venta_moneda_idx` (`idmoneda`), ADD KEY `fk_venta_motivo_idx` (`idmotivo_doc`), ADD KEY `fk_venta_doc_relacionado_idx` (`doc_relacionado`) USING BTREE;
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -1149,159 +1165,137 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  MODIFY `idarticulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
-
+MODIFY `idarticulo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=180;
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `confidencial`
 --
 ALTER TABLE `confidencial`
-  MODIFY `idconfidencial` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `idconfidencial` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  MODIFY `idcotizacion` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `idcotizacion` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `desarrollo`
 --
 ALTER TABLE `desarrollo`
-  MODIFY `idsoporte` int(15) NOT NULL AUTO_INCREMENT;
-
+MODIFY `idsoporte` int(15) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
+MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `detalle_proforma`
 --
 ALTER TABLE `detalle_proforma`
-  MODIFY `iddetalle_proforma` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `iddetalle_proforma` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `moneda`
 --
 ALTER TABLE `moneda`
-  MODIFY `idmoneda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+MODIFY `idmoneda` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `motivo_documento`
 --
 ALTER TABLE `motivo_documento`
-  MODIFY `idmotivo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
+MODIFY `idmotivo_documento` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `notacredito`
 --
 ALTER TABLE `notacredito`
-  MODIFY `idnota_credito` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `idnota_credito` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idpago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+MODIFY `idpago` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
 ALTER TABLE `perfil`
-  MODIFY `idperfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+MODIFY `idperfil` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `idpermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+MODIFY `idpermiso` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
+MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `proforma`
 --
 ALTER TABLE `proforma`
-  MODIFY `idproforma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `idproforma` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `soporte`
 --
 ALTER TABLE `soporte`
-  MODIFY `idsoporte` int(15) NOT NULL AUTO_INCREMENT;
-
+MODIFY `idsoporte` int(15) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `tipo_pago`
+--
+ALTER TABLE `tipo_pago`
+MODIFY `codigotipo_pago` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `tipo_venta_articulo`
 --
 ALTER TABLE `tipo_venta_articulo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `transporte`
 --
 ALTER TABLE `transporte`
-  MODIFY `idtansporte` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `idtansporte` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `ubicacion`
 --
 ALTER TABLE `ubicacion`
-  MODIFY `id_ubicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+MODIFY `id_ubicacion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
-  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
-
+MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=354;
 --
 -- AUTO_INCREMENT de la tabla `valor_cambio`
 --
 ALTER TABLE `valor_cambio`
-  MODIFY `idvalor_cambio` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `idvalor_cambio` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `vehiculo`
 --
 ALTER TABLE `vehiculo`
-  MODIFY `idvehiculo` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `idvehiculo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
+MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

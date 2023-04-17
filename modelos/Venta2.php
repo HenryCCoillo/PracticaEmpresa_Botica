@@ -11,7 +11,7 @@ Class Venta2
 
 	}
 	
-	public function insertar($idcliente,$idusuario,$codigotipo_comprobante,$fecha_hora,$impuesto,$op_gravadas,$op_inafectas,$op_exoneradas,$op_gratuitas,$isc,$total_descuentos,$total_igv,$total_venta,$leyenda,$idmoneda,$idarticulo,$cantidad,$precio_venta,$descuento,$serieArticulo,$incentivo,$incentivo_total){
+	public function insertar($idcliente,$idusuario,$codigotipo_comprobante,$codigotipo_pago,$fecha_hora,$impuesto,$op_gravadas,$op_inafectas,$op_exoneradas,$op_gratuitas,$isc,$total_descuentos,$total_igv,$total_venta,$leyenda,$idmoneda,$idarticulo,$cantidad,$precio_venta,$descuento,$serieArticulo,$incentivo,$incentivo_total){
 
     $ince_total= 0.00;
     foreach ($incentivo_total as $item) {
@@ -77,9 +77,10 @@ Class Venta2
 
      $fecha_todo = date('Y-m-d H:i:s');
 
-		$sql="INSERT INTO venta (idcliente,idusuario,codigotipo_comprobante,serie,correlativo,fecha_hora,impuesto,op_gravadas,op_inafectas,op_exoneradas,op_gratuitas,isc,total_descuentos,total_igv,total_venta,leyenda,estado,idmoneda,idmotivo_doc) VALUES ('$idcliente','$idusuario','$codigotipo_comprobante','$serie','$correlativo','$fecha_todo','$impuesto','$op_gravadas','$op_inafectas','$op_exoneradas','$op_gratuitas','$isc','$total_descuentos','$total_igv','$total_venta','$leyenda','Aceptado','$idmoneda',null)";
-		// return ejecutarConsulta($sql);
-		$idventanew=ejecutarConsulta_retornarID($sql);
+
+    $sql="INSERT INTO venta (idcliente,idusuario,codigotipo_comprobante,serie,correlativo,fecha_hora,impuesto,op_gravadas,op_inafectas,op_exoneradas,op_gratuitas,isc,total_descuentos,total_igv,total_venta,leyenda,estado,idmoneda,idmotivo_doc,codigotipo_pago) VALUES ('$idcliente','$idusuario','$codigotipo_comprobante','$serie','$correlativo','$fecha_todo','$impuesto','$op_gravadas','$op_inafectas','$op_exoneradas','$op_gratuitas','$isc','$total_descuentos','$total_igv','$total_venta','$leyenda','Aceptado','$idmoneda',null,'$codigotipo_pago')";
+    // return ejecutarConsulta($sql);
+    $idventanew=ejecutarConsulta_retornarID($sql);
 
 		$num_elementos=0;
 		$sw=true;
@@ -334,6 +335,10 @@ Class Venta2
 		$sql="SELECT * from tipo_comprobante WHERE codigotipo_comprobante in (1,3) order by codigotipo_comprobante desc";
 		return ejecutarConsulta($sql);
 	}
+  public function selectTipoPago(){
+    $sql="SELECT * from tipo_pago";
+    return ejecutarConsulta($sql);
+  }
 
 	public function selectMoneda(){
 		$sql="SELECT * FROM moneda";
