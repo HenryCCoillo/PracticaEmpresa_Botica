@@ -8,7 +8,7 @@ function init(){
 
 	});
 
-	$.post("../ajax/venta2.php?op=selectTipoPago",function(r){
+	$.post("../ajax/venta2.php?op=selectTipoPagoTodo",function(r){
 		$('#codigotipo_pago').html(r);
 		$('#codigotipo_pago').selectpicker('refresh');
 	});

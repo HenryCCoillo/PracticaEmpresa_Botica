@@ -237,7 +237,13 @@ switch ($_GET["op"]){
 			echo '<option value='.$reg->codigotipo_pago.'>'.$reg->descripcion_tipo_pago.'</option>';
 		}
 		break;
-
+	case 'selectTipoPagoTodo':
+		$rspta = $venta->selectTipoPago();
+		echo '<option value="all">Todos</option>';
+		while ($reg = $rspta->fetch_object()) {
+			echo '<option value='.$reg->codigotipo_pago.'>'.$reg->descripcion_tipo_pago.'</option>';
+		}
+		break;
 	case 'selectMoneda':
 			$rspta = $venta->selectMoneda();
 			while ($reg=$rspta->fetch_object()) {
